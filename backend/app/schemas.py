@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from typing import Optional
 from datetime import datetime
 from .models import LoadStatus
@@ -15,8 +15,10 @@ class TruckBase(BaseModel):
     samsara_vehicle_id: Optional[str] = None
     notes: Optional[str] = None
 
+
 class TruckCreate(TruckBase):
     pass
+
 
 class TruckUpdate(BaseModel):
     driver_name: Optional[str] = None
@@ -25,6 +27,7 @@ class TruckUpdate(BaseModel):
     trailer_number: Optional[str] = None
     samsara_vehicle_id: Optional[str] = None
     notes: Optional[str] = None
+
 
 class TruckOut(TruckBase):
     id: int
@@ -36,6 +39,7 @@ class TruckOut(TruckBase):
 
 
 # ─── Load Schemas ──────────────────────────────────────
+
 
 class LoadBase(BaseModel):
     load_number: str
@@ -57,8 +61,10 @@ class LoadBase(BaseModel):
     notes: Optional[str] = None
     samsara_vehicle_id: Optional[str] = None
 
+
 class LoadCreate(LoadBase):
     status: LoadStatus = LoadStatus.pending
+
 
 class LoadUpdate(BaseModel):
     truck_number: Optional[str] = None
@@ -82,6 +88,7 @@ class LoadUpdate(BaseModel):
     notes: Optional[str] = None
     samsara_vehicle_id: Optional[str] = None
 
+
 class LoadOut(LoadBase):
     id: int
     status: LoadStatus
@@ -100,6 +107,7 @@ class LoadOut(LoadBase):
 
 
 # ─── Stats Schema ──────────────────────────────────────
+
 
 class DashboardStats(BaseModel):
     total_loads: int
