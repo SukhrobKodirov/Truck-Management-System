@@ -1,0 +1,26 @@
+version: '3.9'
+
+# Production overrides — use with:
+#   docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+
+services:
+  backend:
+    restart: always
+    environment:
+      - APP_ENV=production
+    volumes:
+      - db_data:/app/data
+      - /var/backups/truckms:/backups   # host backup directory
+
+  frontend:
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro  # SSL certs (certbot)
+      - ./nginx/nginx.prod.conf:/etc/nginx/conf.d/default.conf:ro
+
+volumes:
+  db_data:
+    driver: local
