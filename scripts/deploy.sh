@@ -49,7 +49,7 @@ echo "${LOG_PREFIX} Images built ✓"
 
 # ── Step 4: Restart containers ────────────────────────────────────────────────
 echo "${LOG_PREFIX} Restarting containers..."
-docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --remove-orphans
+docker compose up -d --remove-orphans
 echo "${LOG_PREFIX} Containers restarted ✓"
 
 # ── Step 5: Health check ──────────────────────────────────────────────────────
